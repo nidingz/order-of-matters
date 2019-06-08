@@ -1,12 +1,81 @@
 
-Primär setup:
-GCE
+# Primära, GCE
 
 VM - Yggdrasil - Containerized: Dovecot mm
 VM - Freja - Containerized: RCube (Webmail), THP.se, Zvea.se, Guldvaskarn.org osv
 
-------------- Yggdrasil
+# Yggdrasil
 
+#### thp-produktion.se
+mail                IN A       1.2.3.4
+autodiscover        IN CNAME   mail
+autoconfig          IN CNAME   mail
+@                   IN MX 10   mail
+_imap._tcp          IN SRV     0 1 143  .
+_imaps._tcp         IN SRV     0 1 993   mail.thp-produktion.se.
+_pop3._tcp          IN SRV     0 1 110   .
+_pop3s._tcp         IN SRV     0 1 995   mail.thp-produktion.se.
+_submission._tcp    IN SRV     0 1 587   mail.thp-produktion.se.
+_smtps._tcp         IN SRV     0 1 465   .
+_sieve._tcp         IN SRV     0 1 4190  mail.thp-produktion.se.
+_autodiscover._tcp  IN SRV     0 1 443   mail.thp-produktion.se.
+_carddavs._tcp      IN SRV     0 1 443   .
+_caldavs._tcp       IN SRV     0 1 443   .
+
+#### nd.se
+mail                IN A       1.2.3.4
+autodiscover        IN CNAME   mail
+autoconfig          IN CNAME   mail
+@                   IN MX 10   mail
+_imap._tcp          IN SRV     0 1 143  .
+_imaps._tcp         IN SRV     0 1 993   mail.nd.se.
+_pop3._tcp          IN SRV     0 1 110   .
+_pop3s._tcp         IN SRV     0 1 995   .
+_submission._tcp    IN SRV     0 1 587   mail.nd.se.
+_smtps._tcp         IN SRV     0 1 465  .
+_sieve._tcp         IN SRV     0 1 4190  mail.nd.se.
+_autodiscover._tcp  IN SRV     0 1 443   mail.nd.se.
+_carddavs._tcp      IN SRV     0 1 443   .
+_caldavs._tcp       IN SRV     0 1 443   .
+
+#### ostaraproduktion.se
+mail                IN A       1.2.3.4
+autodiscover        IN CNAME   mail
+autoconfig          IN CNAME   mail
+@                   IN MX 10   mail
+_imap._tcp          IN SRV     0 1 143  .
+_imaps._tcp         IN SRV     0 1 993   mail.ostaraproduktion.se.
+_pop3._tcp          IN SRV     0 1 110   .
+_pop3s._tcp         IN SRV     0 1 995   .
+_submission._tcp    IN SRV     0 1 587   mail.ostaraproduktion.se.
+_smtps._tcp         IN SRV     0 1 465  .
+_sieve._tcp         IN SRV     0 1 4190  mail.ostaraproduktion.se.
+_autodiscover._tcp  IN SRV     0 1 443   mail.ostaraproduktion.se.
+_carddavs._tcp      IN SRV     0 1 443   .
+_caldavs._tcp       IN SRV     0 1 443   .
+
+#### ostara.se
+mail                IN A       1.2.3.4
+autodiscover        IN CNAME   mail
+autoconfig          IN CNAME   mail
+@                   IN MX 10   mail
+_imap._tcp          IN SRV     0 1 143  .
+_imaps._tcp         IN SRV     0 1 993   mail.ostara.se.
+_pop3._tcp          IN SRV     0 1 110   .
+_pop3s._tcp         IN SRV     0 1 995   .
+_submission._tcp    IN SRV     0 1 587   mail.ostara.se.
+_smtps._tcp         IN SRV     0 1 465  .
+_sieve._tcp         IN SRV     0 1 4190  mail.ostara.se.
+_autodiscover._tcp  IN SRV     0 1 443   mail.ostara.se.
+_carddavs._tcp      IN SRV     0 1 443   .
+_caldavs._tcp       IN SRV     0 1 443   .
+
+#### zvea.co
+#### zvea.se
+#### carl-strand.se
+
+
+```
 ENV COMPOSE_URL = https://github.com/docker/compose/releases/download/1.25.0-rc1/docker-compose-`uname -s`-`uname -m`
 ENV MAILCOW_REPO = https://github.com/mailcow/mailcow-dockerized
 
@@ -21,9 +90,14 @@ cd /opt
 
 git clone $MAILCOW_REPO && cd mailcow-dockerized
 docker-compose pull && docker-compose up -d
+```
 
-------------- Freja
+# Freja
 
+webmail.(thp-produktion.se|ostara.se|ostaraproduktion.se|nd.se|zvea.co)
+www.(thp-produktion.se|ostara.se|guldvaskarn.org|zvea.co)
+
+```
 ENV COMPOSE_URL = https://github.com/docker/compose/releases/download/1.25.0-rc1/docker-compose-`uname -s`-`uname -m`
 
 apt update && apt upgrade
@@ -31,4 +105,4 @@ apt update && apt upgrade
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 curl -L $COMPOSE_URL -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-
+```
