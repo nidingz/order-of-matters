@@ -1,0 +1,7 @@
+
+Primär setup:
+GCE
+
+VM - Yggdrasil - Containerized: Dovecot mm
+VM - Freja - Containerized: RCube (Webmail), THP.se, Zvea.se, Guldvaskarn.org osv
+
