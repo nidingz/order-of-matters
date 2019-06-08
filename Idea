@@ -75,8 +75,7 @@ _caldavs._tcp       IN SRV     0 1 443   .
 #### carl-strand.se
 
 
-```
-ENV COMPOSE_URL = https://github.com/docker/compose/releases/download/1.25.0-rc1/docker-compose-`uname -s`-`uname -m`
+```ENV COMPOSE_URL = https://github.com/docker/compose/releases/download/1.25.0-rc1/docker-compose-`uname -s`-`uname -m`
 ENV MAILCOW_REPO = https://github.com/mailcow/mailcow-dockerized
 
 apt update && apt upgrade
@@ -97,8 +96,7 @@ docker-compose pull && docker-compose up -d
 webmail.(thp-produktion.se|ostara.se|ostaraproduktion.se|nd.se|zvea.co)
 www.(thp-produktion.se|ostara.se|guldvaskarn.org|zvea.co)
 
-```
-ENV COMPOSE_URL = https://github.com/docker/compose/releases/download/1.25.0-rc1/docker-compose-`uname -s`-`uname -m`
+```ENV COMPOSE_URL = https://github.com/docker/compose/releases/download/1.25.0-rc1/docker-compose-`uname -s`-`uname -m`
 
 apt update && apt upgrade
 
